@@ -21,13 +21,13 @@ func create_dialog(text: String):
     # hack to autoscroll vbox
     $PageVBox/PageHBox/DialogVBox/DialogScroll.scroll_vertical = 10000
 
-func create_choice(text: String, marker):
+func create_choice(text: String, marker: String):
     var button = Button.new()
     button.set_text(text)
     button.connect('pressed', self, 'on_choice_press', [marker])
     choices.add_child(button)
 
-func on_choice_press(marker):
+func on_choice_press(marker: String):
     # clear old choices
     for child in choices.get_children():
         child.queue_free()
