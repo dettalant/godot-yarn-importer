@@ -108,21 +108,21 @@ func new_yarn_fibre(line: String) -> Dictionary:
 
 # Create Yarn data structure from file (must be *.yarn.txt Yarn format)
 func load_yarn(path: String) -> Dictionary:
-    var yarn := {}
-    yarn['threads'] = {}
-    yarn['start'] = false
-    yarn['file'] = path
-    var file := File.new()
+    var yarn_data := {}
+    yarn_data['threads'] = {}
+    yarn_data['start'] = false
+    yarn_data['file'] = path
+    var file = File.new()
     file.open(path, file.READ)
     if file.is_open():
         # yarn reading flags
-        var start := false
+#        var start := false
         var header := true
         var thread := new_yarn_thread()
         # loop
         while !file.eof_reached():
             # read a line
-            var line := file.get_line()
+            var line = file.get_line()
             # header read mode
             if header:
                 if line == '---':
@@ -140,12 +140,12 @@ func load_yarn(path: String) -> Dictionary:
                             thread_kind = title_split[0]
                         thread['title'] = thread_title
                         thread['kind'] = thread_kind
-                        if not yarn['start']:
-                            yarn['start'] = thread_title
+                        if not yarn_data['start']:
+                            yarn_data['start'] = thread_title
             # end of thread
             elif line == '===':
                 header = true
-                yarn['threads'][thread['title']] = thread
+                yarn_data['threads'][thread['title']] = thread
                 thread = new_yarn_thread()
             # fibre read mode
             else:
@@ -154,11 +154,11 @@ func load_yarn(path: String) -> Dictionary:
                     thread['fibres'].append(fibre)
     else:
         print('ERROR: Yarn file missing: ', filename)
-    return yarn
+    return yarn_data
 
 # Main logic for node handling
 #
-func yarn_unravel(to: String, from := false):
+func yarn_unravel(to: String, _from := false):
     yarn_custom_logic(to)
     if to in yarn['threads']:
         var thread = yarn['threads'][to]
@@ -283,7 +283,7 @@ func export_to_gdscript() -> String:
                 script += code + "\n"
             'code':
                 var code = "\n\t\t'" + thread['title'] + "':"
-                var tabs = "\n\t\t\t"
+#                var tabs = "\n\t\t\t"
                 code += "\n"
                 code += yarn_code(thread['title'], false, '', "\t\t\t", "story_logic")
                 script += code + "\n"
