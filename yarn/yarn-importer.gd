@@ -48,10 +48,10 @@ func yarn_custom_logic_after(_to: String):
 
 # START SPINNING YOUR YARN
 #
-func spin_yarn(file: String, start_thread = false):
+func spin_yarn(file: String, start_thread := ''):
     yarn = load_yarn(file)
     # Find the starting thread...
-    if not start_thread:
+    if start_thread.empty():
         start_thread = yarn['start']
     # Load any scene-specific settings
     # (Not part of official Yarn standard)
