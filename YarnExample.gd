@@ -12,7 +12,7 @@ func _ready():
     yarn.spin_yarn('res://data/scene-example.yarn.txt')
     populate_settings()
 
-func create_dialog(text):
+func create_dialog(text: String):
     add_separator(dialog)
     var label = Label.new()
     label.set_text(text)
@@ -21,7 +21,7 @@ func create_dialog(text):
     # hack to autoscroll vbox
     $PageVBox/PageHBox/DialogVBox/DialogScroll.scroll_vertical = 10000
 
-func create_choice(text, marker):
+func create_choice(text: String, marker):
     var button = Button.new()
     button.set_text(text)
     button.connect('pressed', self, 'on_choice_press', [marker])
@@ -34,7 +34,7 @@ func on_choice_press(marker):
     # jump to next node
     yarn.yarn_unravel(marker)
 
-func add_separator(to):
+func add_separator(to: Node):
     if to.get_child_count()>0:
         var separator = HSeparator.new()
         to.add_child(separator)
@@ -42,5 +42,5 @@ func add_separator(to):
 func populate_settings():
     pass
 
-func set_visit_label(text):
+func set_visit_label(text: String):
     $PageVBox/Bottom/VBoxContainer/VisitLabel.set_text(text)
