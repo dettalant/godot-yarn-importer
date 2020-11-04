@@ -79,7 +79,7 @@ func new_yarn_thread() -> Dictionary:
 func new_yarn_fibre(line: String) -> Dictionary:
     # choice fibre
     if line.substr(0,2) == '[[':
-        if line.find('|') != -1:
+        if '|' in line:
             var fibre := {}
             fibre['kind'] = 'choice'
             line = line.replace('[[', '')
@@ -90,7 +90,7 @@ func new_yarn_fibre(line: String) -> Dictionary:
             return fibre
     # logic instruction (not part of official Yarn standard)
     elif line.substr(0,2) == '<<':
-        if line.find(':') != -1:
+        if ':' in line:
             var fibre := {}
             fibre['kind'] = 'logic'
             line = line.replace('<<', '')
@@ -140,7 +140,7 @@ func load_yarn(path: String) -> Dictionary:
                             thread_kind = title_split[0]
                         thread['title'] = thread_title
                         thread['kind'] = thread_kind
-                        if not yarn_data['start']:
+                        if yarn_data['start'].empty():
                             yarn_data['start'] = thread_title
             # end of thread
             elif line == '===':
@@ -219,7 +219,7 @@ func yarn_code_replace(
     parent := 'parent.',
     next_func := "yarn_unravel"
 ):
-    if code.find("[[") != -1:
+    if "[[" in code:
         code = code.replace("[[", parent+next_func+"('")
         code = code.replace("]]", "')")
     code = code.replace("say(", parent+"say(")
