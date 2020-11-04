@@ -110,7 +110,7 @@ func new_yarn_fibre(line: String) -> Dictionary:
 func load_yarn(path: String) -> Dictionary:
     var yarn_data := {}
     yarn_data['threads'] = {}
-    yarn_data['start'] = false
+    yarn_data['start'] = ''
     yarn_data['file'] = path
     var file = File.new()
     file.open(path, file.READ)

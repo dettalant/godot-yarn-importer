@@ -1,5 +1,5 @@
 title: start
-tags: 
+tags:
 colorID: 0
 position: 567,90
 ---
@@ -10,7 +10,7 @@ With that, you'll get a data structure you can use to run dialog+choices branche
 [[Example Choice B|choice-b]]
 ===
 title: choice-a
-tags: 
+tags:
 colorID: 0
 position: 221,330
 ---
@@ -20,7 +20,7 @@ This would be some text for choice A path.
 [[Example Choice C|choice-c]]
 ===
 title: choice-b
-tags: 
+tags:
 colorID: 0
 position: 910,384
 ---
@@ -30,7 +30,7 @@ Think you can get back to the start?
 [[Example Choice C|choice-c]]
 ===
 title: choice-c
-tags: 
+tags:
 colorID: 0
 position: 574,498
 ---
@@ -44,7 +44,7 @@ Exciting huh?
 [[Back to Start|start]]
 ===
 title: replace
-tags: 
+tags:
 colorID: 0
 position: 849,665
 ---
@@ -55,7 +55,7 @@ Full Nane: $PlayerFull
 [[Back to Start|start]]
 ===
 title: code:code-example
-tags: 
+tags:
 colorID: 0
 position: 214,663
 ---
